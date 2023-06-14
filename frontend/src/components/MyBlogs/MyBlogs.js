@@ -13,7 +13,9 @@ const MyBlogs = ({ userId, truncateContent }) => {
   // state variable to hold and set the logged in users' blogs
   const [myBlogs, setMyBlogs] = useState([]);
   // loading state for the user clicking on a blog
-  const [isLoadingBlog, setIsLoadingBlog] = useState(false);
+  const [isLoadingBlog, setIsLoadingBlog] = useState(true);
+  const [isLoadingBlogs, setIsLoadingBlogs] = useState(true); // New state for blogs loading
+
 
   // fetches the user's information
   useEffect(() => {
@@ -39,6 +41,8 @@ const MyBlogs = ({ userId, truncateContent }) => {
         // catch and log the error
       } catch (error) {
         console.error(error);
+            } finally {
+        setIsLoadingUser(false); // Set loading state to false when finished
       }
     };
     fetchUser();
@@ -70,23 +74,15 @@ const MyBlogs = ({ userId, truncateContent }) => {
         // catch and log the error
       } catch (error) {
         console.error(error);
+            } finally {
+        setIsLoadingBlogs(false); // Set loading state to false when finished
       }
     };
     fetchMyBlogs();
   }, [userId]);
 
-  // if the there are no blogs with the logged in user's id
-  if (myBlogs.length === 0) {
-    return (
-      <h1 className="d-flex justify-content-center align-items-center">
-        No Blogs found
-      </h1>
-    );
-  }
-
-  // if the blog is null then dispaly the loading message
-  if (!myBlogs) {
-    // use a spinner from bootstarp
+  // if the blog & user is null then dispaly the loading message
+  if (isLoadingUser || isLoadingBlogs) { // Check loading states instead of myBlogs length
     return (
       <Container fluid className="page-container">
         <h1 className="d-flex justify-content-center align-items-center">
@@ -98,6 +94,17 @@ const MyBlogs = ({ userId, truncateContent }) => {
       </Container>
     );
   }
+
+  // if the there are no blogs with the logged in user's id
+  if (myBlogs.length === 0) {
+    return (
+      <h1 className="d-flex justify-content-center align-items-center">
+        No Blogs found
+      </h1>
+    );
+  }
+
+
 
   // loading message for when the blog is clicked on
   if (isLoadingBlog) {
