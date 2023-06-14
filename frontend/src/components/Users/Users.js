@@ -21,7 +21,7 @@ const Users = ({ userId }) => {
     // try-catch block for error handeling
     try {
       // sends a GET request to the server endpoint
-      const response = await fetch("http://localhost:8080/user");
+      const response = await fetch("https://blogapp-mcqn.onrender.com/user");
 
       // sets the fetched users data
       if (response.ok) {
@@ -44,7 +44,7 @@ const Users = ({ userId }) => {
     setIsLoading(true);
     try {
       // sends a DELETE request to the server endpont with the userId and the token
-      const response = await fetch(`http://localhost:8080/admin/${userId}`, {
+      const response = await fetch(`https://blogapp-mcqn.onrender.com/admin/${userId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Replace with your actual authentication token
