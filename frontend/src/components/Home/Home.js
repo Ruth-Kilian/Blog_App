@@ -16,6 +16,9 @@ const HomePage = ({
 }) => {
   // loading state for the user clicking on a blog
   const [isLoadingBlog, setIsLoadingBlog] = useState(false);
+    // loading state for the blogs
+    const [isLoadingBlogs, setIsLoadingBlogs] = useState(true);
+
   // fetches the user information and blogs
   useEffect(() => {
     // fetch All users' blogs
@@ -33,6 +36,8 @@ const HomePage = ({
       } catch (error) {
         // log the error
         console.error(error);
+            } finally {
+        setIsLoadingBlogs(false);
       }
     };
 
@@ -57,9 +62,8 @@ const HomePage = ({
     fetchAllUsers();
   }, [setUsers, setAllBlogs]);
 
-  // if the blog is null then dispaly the loading message
-  if (!allBlogs) {
-    // use a spinner from bootstarp
+  // dispaly the loading message
+  if (isLoadingBlogs) {
     return (
       <Container fluid className="page-container">
         <h1 className="d-flex justify-content-center align-items-center loading-spinner">
