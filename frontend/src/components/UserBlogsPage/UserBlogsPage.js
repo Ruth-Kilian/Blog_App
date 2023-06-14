@@ -12,6 +12,11 @@ const UserBlogsPage = ({ users, truncateContent }) => {
   const { username } = useParams();
   // state variable to hold and set the clicked on user's blogs
   const [blogs, setBlogs] = useState([]);
+  // state variable for managing the loading state
+    const [isLoading, setIsLoading] = useState(true);
+  // loading state for the user clicking on a blog
+  const [isLoadingBlog, setIsLoadingBlog] = useState(false);
+
 
   // fetches the users blogs
   useEffect(() => {
@@ -30,19 +35,34 @@ const UserBlogsPage = ({ users, truncateContent }) => {
     } catch (error) {
       // log the error
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // if the blog is null then dispaly the loading message
-  if (!blogs) {
-    // use a spinner from bootstarp
+  // dispaly the loading message
+  if (isLoading) {
     return (
       <Container fluid className="page-container">
         <h1 className="d-flex justify-content-center align-items-center loading-spinner">
           Loading Content
         </h1>
         <div className="d-flex justify-content-center align-items-center loading-spinner">
-          <Spinner animation="border" role="status" variant="primary"></Spinner>
+          <Spinner animation="border" role="status" variant="primary" />
+        </div>
+      </Container>
+    );
+  }
+
+  // loading message for when the blog is clicked on
+  if (isLoadingBlog) {
+    return (
+      <Container fluid className="page-container">
+        <h1 className="d-flex justify-content-center align-items-center loading-spinner">
+          Loading Blog...
+        </h1>
+        <div className="d-flex justify-content-center align-items-center loading-spinner">
+          <Spinner animation="border" role="status" variant="primary" />
         </div>
       </Container>
     );
@@ -64,7 +84,11 @@ const UserBlogsPage = ({ users, truncateContent }) => {
               >
                 {/* A link to the BlogPage of the specific blog clicked on*/}
 
-                <Link to={`/blog/${blog._id}`} className="blog-link">
+                           <Link
+              to={`/blog/${blog._id}`}
+              className="blog-link-home"
+              onClick={() => setIsLoadingBlog(true)}
+            >
                   <Card className="mb-3 blog-card">
                     <Card.Img
                       variant="top"
