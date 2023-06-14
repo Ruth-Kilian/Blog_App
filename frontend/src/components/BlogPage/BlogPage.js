@@ -44,7 +44,7 @@ export default function BlogPage({
   // wrapped in the useCallback hook - returns a memorized function that only changes if the dependecey changes
   const fetchBlog = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:8080/blog/${id}`);
+      const response = await fetch(`https://blogapp-mcqn.onrender.com/blog/${id}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -123,7 +123,7 @@ export default function BlogPage({
       formData.append("image", editedBlog.image); // Append the image file
 
       // sends a PUT request to the server endpoint
-      const response = await fetch(`http://localhost:8080/blog/edit/${id}`, {
+      const response = await fetch(`https://blogapp-mcqn.onrender.com/blog/edit/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -151,7 +151,7 @@ export default function BlogPage({
   // handles the liking of a post
   const handleLike = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/blog/like/${id}`, {
+      const response = await fetch(`https://blogapp-mcqn.onrender.com/blog/like/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -176,7 +176,7 @@ export default function BlogPage({
     setIsLoadingUserDelete(true);
     try {
       // sends a DELETE request to the server endpoint with the blog id and userid and token
-      const response = await fetch(`http://localhost:8080/blog/delete/${id}`, {
+      const response = await fetch(`https://blogapp-mcqn.onrender.com/blog/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -205,7 +205,7 @@ export default function BlogPage({
     setIsLoadingAdminDelete(true);
     try {
       // sends a DELETE request to the server endpoint with the blogid and token
-      const response = await fetch(`http://localhost:8080/admin/delete/${id}`, {
+      const response = await fetch(`https://blogapp-mcqn.onrender.com/admin/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -272,7 +272,7 @@ export default function BlogPage({
         <Card.Img
           variant="top"
           // fetch the blog image from the folder
-          src={`http://localhost:8080/uploads/${blog.image}`}
+          src={`https://blogapp-mcqn.onrender.com/uploads/${blog.image}`}
           alt="Blog"
         />
         <Card.Body className="card-body-details">
@@ -397,7 +397,7 @@ export default function BlogPage({
               <div className="picture">
                 <img
                   // fetch the profilepic from the folder
-                  src={`http://localhost:8080/profilePics/${user.profilePicture}`}
+                  src={`https://blogapp-mcqn.onrender.com/profilePics/${user.profilePicture}`}
                   alt="Profile"
                 />
               </div>
