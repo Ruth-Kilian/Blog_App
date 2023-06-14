@@ -10,7 +10,9 @@ const Users = ({ userId }) => {
   // state variable to hold and set ALL the users' information
   const [users, setUsers] = useState([]);
   // state variable to manage the loading state:
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+    // state variable to manage the loading state:
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   // fetches the list of users
   useEffect(() => {
@@ -35,13 +37,15 @@ const Users = ({ userId }) => {
       // catch and log the error
     } catch (error) {
       console.log(error);
+            setIsLoading(false); // Set loading state to false when finished
+
     }
   };
 
   // handles the deletion of a user account by an admin user
   const handleDeleteAccount = async (userId) => {
     // set is loading to true
-    setIsLoading(true);
+    setIsLoadingDelete(true);
     try {
       // sends a DELETE request to the server endpont with the userId and the token
       const response = await fetch(`https://blogapp-mcqn.onrender.com/admin/${userId}`, {
@@ -63,12 +67,10 @@ const Users = ({ userId }) => {
     } catch (error) {
       console.error(error);
     }
-    setIsLoading(false);
+    setIsLoadingDelete(false);
   };
 
-  // if the users is null then dispaly the loading message
-  if (!users) {
-    // use a spinner from bootstarp
+  if (isLoading) { // Check loading state instead of users
     return (
       <Container fluid className="page-container">
         <h1 className="d-flex justify-content-center align-items-center loading-spinner">
@@ -80,6 +82,8 @@ const Users = ({ userId }) => {
       </Container>
     );
   }
+
+
 
   // filters out the currently logged in user from the list of users to prevent self-deletion
   const filteredUsers = users.filter((user) => user._id !== userId);
@@ -101,9 +105,9 @@ const Users = ({ userId }) => {
                 <Button
                   variant="danger"
                   onClick={() => handleDeleteAccount(user._id)}
-                  disabled={isLoading}
+                  disabled={isLoadingDelete}
                 >
-                  {isLoading ? (
+                  {isLoadingDelete ? (
                     <Spinner animation="border" size="sm" />
                   ) : (
                     <FaTrash />
