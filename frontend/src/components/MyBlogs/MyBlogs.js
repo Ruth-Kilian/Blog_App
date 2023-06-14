@@ -106,19 +106,6 @@ const MyBlogs = ({ userId, truncateContent }) => {
 
 
 
-  // loading message for when the blog is clicked on
-  if (isLoadingBlog) {
-    return (
-      <Container fluid className="page-container">
-        <h1 className="d-flex justify-content-center align-items-center loading-spinner">
-          Loading Blog...
-        </h1>
-        <div className="d-flex justify-content-center align-items-center loading-spinner">
-          <Spinner animation="border" role="status" variant="primary" />
-        </div>
-      </Container>
-    );
-  }
 
   // renders the list of blogs with the username/profilepicture and timestamp
   return (
