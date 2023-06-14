@@ -13,7 +13,7 @@ const MyBlogs = ({ userId, truncateContent }) => {
   // state variable to hold and set the logged in users' blogs
   const [myBlogs, setMyBlogs] = useState([]);
   // loading state for the user clicking on a blog
-  const [isLoadingBlog, setIsLoadingBlog] = useState(true);
+   const [isLoadingUser, setIsLoadingUser] = useState(true); // New state for user loading
   const [isLoadingBlogs, setIsLoadingBlogs] = useState(true); // New state for blogs loading
 
 
