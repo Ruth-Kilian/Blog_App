@@ -22,7 +22,7 @@ const UserBlogsPage = ({ users, truncateContent }) => {
     try {
       // sends a GET request to the server endpoint with the username
       const response = await fetch(
-        `http://localhost:8080/blog/user/${username}/blogs`
+        `https://blogapp-mcqn.onrender.com/blog/user/${username}/blogs`
       );
       const data = await response.json();
       // set the blog data
@@ -69,7 +69,7 @@ const UserBlogsPage = ({ users, truncateContent }) => {
                     <Card.Img
                       variant="top"
                       // fetch the blog image from the folder
-                      src={`http://localhost:8080/uploads/${blog.image}`}
+                      src={`https://blogapp-mcqn.onrender.com/uploads/${blog.image}`}
                       alt="Blog"
                     />
                     <Card.Body>
@@ -82,7 +82,7 @@ const UserBlogsPage = ({ users, truncateContent }) => {
                           <div className="picture-page">
                             <img
                               // fetch the profile picture from the folder
-                              src={`http://localhost:8080/profilePics/${user.profilePicture}`}
+                              src={`https://blogapp-mcqn.onrender.com/profilePics/${user.profilePicture}`}
                               alt="Profile"
                             />
                           </div>
