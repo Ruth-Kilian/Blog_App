@@ -27,7 +27,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
   // wrapped in the useCallback hook - returns a memorized function that only changes if the dependecey changes
   const fetchUser = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:8080/user/${userId}`, {
+      const response = await fetch(`https://blogapp-mcqn.onrender.com/user/${userId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -58,7 +58,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
     try {
       // sends a POST reques to the server endpoint with the user id and token and new username
       const response = await fetch(
-        `http://localhost:8080/user/${user._id}/change-username`,
+        `https://blogapp-mcqn.onrender.com/user/${user._id}/change-username`,
         {
           method: "POST",
           headers: {
@@ -95,7 +95,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
     try {
       // sends a POST request to the server endpoint with the user id and token and password changes
       const response = await fetch(
-        `http://localhost:8080/user/${user._id}/change-password`,
+        `https://blogapp-mcqn.onrender.com/user/${user._id}/change-password`,
         {
           method: "POST",
           headers: {
@@ -136,7 +136,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
 
       // sends a POST request to the server endpoint with the user id and token and formData
       const response = await fetch(
-        `http://localhost:8080/user/${user._id}/change-profile-picture`,
+        `https://blogapp-mcqn.onrender.com/user/${user._id}/change-profile-picture`,
         {
           method: "POST",
           headers: {
@@ -176,7 +176,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
       try {
         // sends DELETE request to the server endpoint with the userId, token
         const response = await fetch(
-          `http://localhost:8080/user/account/${userId}`,
+          `https://blogapp-mcqn.onrender.com/user/account/${userId}`,
           {
             method: "DELETE",
             headers: {
@@ -243,7 +243,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
           <img
             style={{ marginBottom: "15px" }}
             // fetch the profile picture from the folder it is stored in
-            src={`http://localhost:8080/profilePics/${user.profilePicture}`}
+            src={`https://blogapp-mcqn.onrender.com/profilePics/${user.profilePicture}`}
             alt="Profile"
           />
         </div>
