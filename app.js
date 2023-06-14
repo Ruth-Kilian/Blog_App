@@ -35,7 +35,7 @@ app.use(
         defaultSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'"],
         scriptSrc: ["'self'", "'unsafe-inline'", "example.com"],
-        imgSrc: ["'self'", "example.com"],
+        imgSrc: ["'self'", "example.com", "images.pexels.com"],
       },
     },
     xssFilter: true,
