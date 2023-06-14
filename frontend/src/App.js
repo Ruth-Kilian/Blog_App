@@ -75,7 +75,7 @@ function App() {
       formData.append("role", role);
 
       // sends a POST request to the server endpont with the form data
-      const response = await fetch("http://localhost:8080/user/register", {
+      const response = await fetch("https://blogapp-mcqn.onrender.com/user/register", {
         method: "POST",
         body: formData,
       });
@@ -113,7 +113,7 @@ function App() {
     // try-catch block for errors
     try {
       // sends a POST request to the server endpoint with the data
-      const response = await fetch("http://localhost:8080/user/login", {
+      const response = await fetch("https://blogapp-mcqn.onrender.com/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
