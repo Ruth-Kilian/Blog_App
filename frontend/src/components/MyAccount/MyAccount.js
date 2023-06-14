@@ -23,6 +23,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
   const [isLoadingPassword, setIsLoadingPassword] = useState(false); // Loading state for password update button
   const [isLoadingProfilePicture, setIsLoadingProfilePicture] = useState(false); // Loading state for profile picture update button
   const [isLoadingDeleteAccount, setIsLoadingDeleteAccount] = useState(false); // Loading state for delete account button
+  const [isLoading, setIsLoading] = useState(true); // Loading state for delete account button
 
   // wrapped in the useCallback hook - returns a memorized function that only changes if the dependecey changes
   const fetchUser = useCallback(async () => {
@@ -42,6 +43,8 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
       }
     } catch (error) {
       console.error(error);
+        } finally {
+      setIsLoading(false);
     }
   }, [userId]);
 
@@ -203,16 +206,15 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
     }
   };
 
-  // if the user state is null a loading message is displayed
-  if (!user) {
-    // use a spinner from bootstarp
+  // loading message is displayed
+  if (isLoading) {
     return (
       <Container fluid className="page-container">
         <h1 className="d-flex justify-content-center align-items-center loading-spinner">
           Loading Content
         </h1>
         <div className="d-flex justify-content-center align-items-center loading-spinner">
-          <Spinner animation="border" role="status" variant="primary"></Spinner>
+          <Spinner animation="border" role="status" variant="primary" />
         </div>
       </Container>
     );
