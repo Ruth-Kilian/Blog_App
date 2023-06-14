@@ -22,7 +22,7 @@ const HomePage = ({
     const fetchAllBlogs = async () => {
       try {
         // sends a GET request to server endpoint
-        const response = await fetch("http://localhost:8080/blog/"); // Replace with your API endpoint
+        const response = await fetch("https://blogapp-mcqn.onrender.com/blog/"); // Replace with your API endpoint
         if (response.ok) {
           const data = await response.json();
           // set the blog data
@@ -40,7 +40,7 @@ const HomePage = ({
     const fetchAllUsers = async () => {
       try {
         // sends a GET request to the server enpoint
-        const response = await fetch("http://localhost:8080/user/");
+        const response = await fetch("https://blogapp-mcqn.onrender.com/user/");
         if (response.ok) {
           const data = await response.json();
           // set the user data
@@ -112,7 +112,7 @@ const HomePage = ({
                     <Card.Img
                       variant="top"
                       // fetch the image from the folder
-                      src={`http://localhost:8080/uploads/${blog.image}`}
+                      src={`https://blogapp-mcqn.onrender.com/uploads/${blog.image}`}
                       alt="Blog"
                       className="card-img-top"
                     />
@@ -128,7 +128,7 @@ const HomePage = ({
                           <div className="picture-home">
                             <img
                               // fetch the profile picture from the folder
-                              src={`http://localhost:8080/profilePics/${user.profilePicture}`}
+                              src={`https://blogapp-mcqn.onrender.com/profilePics/${user.profilePicture}`}
                               alt="Profile"
                             />
                           </div>
