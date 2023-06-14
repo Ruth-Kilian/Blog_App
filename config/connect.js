@@ -4,7 +4,7 @@
 const mongoose = require("mongoose");
 
 // this variable holds the connection string for the todoDatabase -> runs on port 27017
-const uri = "mongodb://127.0.0.1:27017/blogDatabase";
+const uri = "mongodb+srv://ruthamberkilian:<password>@cluster-example.m2qz1ck.mongodb.net/blogDatabase";
 
 // This function establishes a connection
 const connectDB = async () => {
