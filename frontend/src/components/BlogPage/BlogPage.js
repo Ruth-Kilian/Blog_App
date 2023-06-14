@@ -66,18 +66,7 @@ export default function BlogPage({
     }
   }, [id]);
 
-  if (isLoadingBlog) {
-    return (
-      <Container fluid className="page-container">
-        <h1 className="d-flex justify-content-center align-items-center loading-spinner">
-          Loading Content
-        </h1>
-        <div className="d-flex justify-content-center align-items-center loading-spinner">
-          <Spinner animation="border" role="status" variant="primary" />
-        </div>
-      </Container>
-    );
-  }
+
 
   // fetches the clicked on blog
   useEffect(() => {
@@ -262,6 +251,19 @@ export default function BlogPage({
     );
   }
 
+  if (isLoadingBlog) {
+    return (
+      <Container fluid className="page-container">
+        <h1 className="d-flex justify-content-center align-items-center loading-spinner">
+          Loading Content
+        </h1>
+        <div className="d-flex justify-content-center align-items-center loading-spinner">
+          <Spinner animation="border" role="status" variant="primary" />
+        </div>
+      </Container>
+    );
+  }
+  
   // loading message for when the username is clicked on
   if (isLoadingUserBlogs) {
     return (
