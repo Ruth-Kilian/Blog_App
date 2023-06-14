@@ -33,6 +33,8 @@ export default function BlogPage({
   });
   // state variable to hold and set the likes on the post
   const [liked, setLiked] = useState(false);
+    // loading state for getting the blog
+  const [isLoadingBlog, setIsLoadingBlog] = useState(true);
   // loading state for when the username is clicked on
   const [isLoadingUserBlogs, setIsLoadingUserBlogs] = useState(false);
   const [isLoadingEdit, setIsLoadingEdit] = useState(false); // Loading state for edit button
@@ -59,7 +61,23 @@ export default function BlogPage({
     } catch (error) {
       console.error(error);
     }
+    } finally {
+      setIsLoadingBlog(false);
+    }
   }, [id]);
+
+  if (isLoadingBlog) {
+    return (
+      <Container fluid className="page-container">
+        <h1 className="d-flex justify-content-center align-items-center loading-spinner">
+          Loading Content
+        </h1>
+        <div className="d-flex justify-content-center align-items-center loading-spinner">
+          <Spinner animation="border" role="status" variant="primary" />
+        </div>
+      </Container>
+    );
+  }
 
   // fetches the clicked on blog
   useEffect(() => {
