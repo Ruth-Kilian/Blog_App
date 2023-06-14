@@ -61,7 +61,7 @@ export default function BlogPage({
     } catch (error) {
       console.error(error);
     }
-    } finally {
+     finally {
       setIsLoadingBlog(false);
     }
   }, [id]);
