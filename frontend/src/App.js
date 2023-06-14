@@ -21,13 +21,9 @@ import UserBlogsPage from "./components/UserBlogsPage/UserBlogsPage";
 
 function App() {
   // state variable to hold and set if the user is logged in
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(
-    !!localStorage.getItem("token") // if the token exists in the localStorage then the user will stay logged in if the page is refreshed
-  );
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   // state variable to hold and set whether the user is an admin or not
-  const [isAdmin, setIsAdmin] = useState(
-    localStorage.getItem("role") === "admin" // if the role admin exists in the localStorage then the user will stay logged in as an admin
-  );
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // state variable to hold and set what role the user has
   const [role, setRole] = useState("normal");
