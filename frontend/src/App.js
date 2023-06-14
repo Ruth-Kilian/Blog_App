@@ -161,9 +161,8 @@ function App() {
   // Add event listener to handle page refresh or exit
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      // Clear local storage and log out user
-      localStorage.clear();
       handleLogout();
+       navigate("/");
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
