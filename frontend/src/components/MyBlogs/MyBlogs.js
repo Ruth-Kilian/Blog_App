@@ -20,7 +20,7 @@ const MyBlogs = ({ userId, truncateContent }) => {
     const fetchUser = async () => {
       try {
         // sends a GET request to the server enpoint with the logged in users id and token
-        const response = await fetch(`http://localhost:8080/user/${userId}`, {
+        const response = await fetch(`https://blogapp-mcqn.onrender.com/user/${userId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -50,7 +50,7 @@ const MyBlogs = ({ userId, truncateContent }) => {
       try {
         // sends a GET request to the server endpont with the token
         const response = await fetch(
-          `http://localhost:8080/blog/my-blogs/${userId}`,
+          `https://blogapp-mcqn.onrender.com/blog/my-blogs/${userId}`,
           {
             method: "GET",
             headers: {
@@ -134,7 +134,7 @@ const MyBlogs = ({ userId, truncateContent }) => {
                 <Card.Img
                   variant="top"
                   // fetch the blog image from the folder
-                  src={`http://localhost:8080/uploads/${blog.image}`}
+                  src={`https://blogapp-mcqn.onrender.com/uploads/${blog.image}`}
                   alt="Blog"
                   className="image"
                 />
@@ -145,7 +145,7 @@ const MyBlogs = ({ userId, truncateContent }) => {
                     <div className="picture">
                       <img
                         // fetch the profile picture from the folder
-                        src={`http://localhost:8080/profilePics/${user.profilePicture}`}
+                        src={`https://blogapp-mcqn.onrender.com/profilePics/${user.profilePicture}`}
                         alt="Profile"
                       />
                     </div>
