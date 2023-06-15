@@ -228,7 +228,7 @@ exports.changeProfilePicture = async (req, res) => {
     if (previousProfilePic) {
       const profilePicsPath = path.join(
         __dirname,
-        "../ProfilePics",
+        "../profilePics",
         previousProfilePic
       );
       fs.unlinkSync(profilePicsPath);
