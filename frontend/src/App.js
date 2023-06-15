@@ -3,7 +3,7 @@ and manages user authentication and authorization. */
 
 // note: added loading messages accoss all components as the deployed app was extremely slow in loading content
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
@@ -158,7 +158,27 @@ function App() {
     navigate("/");
   };
 
+  // if the page refreshes clear credentials
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ""; // Needed for Chrome
+    };
 
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("unload", handleLogout);
+
+    return () => {
+      window.removeEventListener("unload", handleLogout);
+    };
+  });
 
 
   return (
