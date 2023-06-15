@@ -20,6 +20,25 @@ https://github.com/Ruth-Kilian/Blog_App
 
 ## Deployed Website
 
+https://blogapp-mcqn.onrender.com/
+
+### How did I deploy it?
+
+1. Pushed my App to GitHub
+2. Changed my mongoDB connection from
+   a. local: "mongodb://127.0.0.1:27017/blogDatabase";
+   b. cloud: "mongodb+srv://ruthamberkilian:<password>@cluster-example.m2qz1ck.mongodb.net/blogDatabase";
+3. Exported the local database documents to the cloud database
+4. Created a new Web Service on render.com
+5. Used these settings:
+   a. Branch - main
+   b. Root Directory - .
+   c. Build Command - npm install && cd frontend && npm install && npm run build
+   d. Start Command node server.js
+
+6. Once it was deployed I changed all the URLs (http://localhost:8080/) to the new URL (https://blogapp-mcqn.onrender.com/)
+
+
 ## Security
 
 ### contentSecurityPolicy
