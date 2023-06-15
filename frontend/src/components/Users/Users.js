@@ -34,6 +34,8 @@ const Users = ({ userId }) => {
         const data = await response.json();
         const usersData = data.users;
         setUsers(usersData);
+                    setIsLoading(false); // Set loading state to false when finished
+
       } else {
         // log the error
         console.error("Failed to fetch users");
@@ -41,7 +43,6 @@ const Users = ({ userId }) => {
       // catch and log the error
     } catch (error) {
       console.log(error);
-            setIsLoading(false); // Set loading state to false when finished
 
     }
   };
