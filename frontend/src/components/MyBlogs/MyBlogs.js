@@ -1,7 +1,7 @@
 /* MyBlogs component displays all the logged in users' blogs */
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Card, Spinner } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import "./myblogs.css";
@@ -16,7 +16,8 @@ const MyBlogs = ({ userId, truncateContent }) => {
   const [isLoadingBlog, setIsLoadingBlog] = useState(false);
    const [isLoadingUser, setIsLoadingUser] = useState(true); // New state for user loading
   const [isLoadingBlogs, setIsLoadingBlogs] = useState(true); // New state for blogs loading
-
+  // navigate the user to different pages
+  const navigate = useNavigate();
 
   // fetches the user's information
   useEffect(() => {
@@ -68,6 +69,9 @@ const MyBlogs = ({ userId, truncateContent }) => {
           const data = await response.json();
           // set the blogs
           setMyBlogs(data);
+              } else if (response.status === 401) {
+          alert("Unauthorized! You do not have the necessary credentials!");
+          navigate("/");
         } else {
           // log the error
           console.error("Failed to fetch myBlogs");
