@@ -38,6 +38,9 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
+      } else if (response.status === 401) {
+        alert("Unauthorized! You do not have the necessary credentials!");
+        navigate("/");
       } else {
         console.log("Failed to fetch User information!");
       }
