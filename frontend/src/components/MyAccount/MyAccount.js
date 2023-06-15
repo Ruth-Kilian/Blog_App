@@ -53,7 +53,7 @@ const MyAccount = ({ userId, handleLogout, setIsUserLoggedIn }) => {
 
   useEffect(() => {
     fetchUser();
-  }, [fetchUser]);
+  }, [fetchUser,  navigate]);
 
   // handles the username change
   const handleUsernameChange = async (e) => {
