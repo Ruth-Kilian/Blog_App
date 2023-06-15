@@ -48,7 +48,7 @@ const MyBlogs = ({ userId, truncateContent }) => {
       }
     };
     fetchUser();
-  }, [userId]);
+  }, [userId,  navigate]);
 
   // fetches the logged in users blogs
   useEffect(() => {
