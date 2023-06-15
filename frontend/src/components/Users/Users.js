@@ -1,7 +1,8 @@
 /* Users component to display a list of the current users for an admin user to manage*/
 
 import React, { useEffect, useState } from "react";
-import { Container, Button, Spinner } from "react-bootstrap";
+import { Container, Button, Spinner } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import "./users.css";
 
@@ -13,6 +14,9 @@ const Users = ({ userId }) => {
   const [isLoading, setIsLoading] = useState(true);
     // state variable to manage the loading state:
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  // navigate the user to different pages
+  const navigate = useNavigate();
+
 
   // fetches the list of users
   useEffect(() => {
@@ -59,6 +63,9 @@ const Users = ({ userId }) => {
         console.log("Deleted user");
         // remove the deleted user from the users list
         setUsers(users.filter((user) => user._id !== userId));
+           } else if (response.status === 401) {
+        alert("Unauthorized! You do not have the necessary credentials!");
+        navigate("/");
       } else {
         // log the error
         console.error("Failed to delete user account");
