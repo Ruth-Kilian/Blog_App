@@ -63,6 +63,9 @@ const CreatePost = () => {
         setImage(null);
         // navigate to the users blogs
         navigate("/blogs");
+           } else if (response.status === 401) {
+        alert("Unauthorized! You do not have the necessary credentials!");
+        navigate("/");
       } else {
         // alert the user that all the fields need to have data
         alert(
